@@ -1,9 +1,16 @@
-import {Pressable, StyleSheet, Text, View} from "react-native";
+import {Button, Image, Pressable, StyleSheet, Text, View} from "react-native";
 
 // @ts-ignore
-const Card = ({title})=>{
+const Card = ({title,imagePath})=>{
     return <Pressable style={styles.container}>
-        <Text>{title}</Text>
+        <Image source={imagePath} style={{height:50, width:50}}></Image>
+        <View style={{width:"auto"}} >
+            <Text>{title}</Text>
+            <Button title="More" onPress={()=>{
+                console.log("Button in Card pressed");
+            }}></Button>
+        </View>
+
     </Pressable>;
 }
 export default Card;
@@ -15,9 +22,10 @@ const styles = StyleSheet.create({
         alignItems: "center",
         width: 200,
         height: 150,
-        backgroundColor:"#E0E0E0",
-        paddingHorizontal: 10,
+        backgroundColor:"#fff",
+        // paddingHorizontal: 10,
         marginHorizontal: 10,
         borderRadius: 5,
+        flexDirection: "row",
     },
 })

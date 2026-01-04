@@ -2,6 +2,9 @@ import {Image, ScrollView, StatusBar, StyleSheet, Text, View} from "react-native
 import { SafeAreaView } from 'react-native-safe-area-context';
 // @ts-ignore
 import logo from "../../assets/images/apan-class-logo.png";
+
+// @ts-ignore
+import contactUs from "../../assets/images/card_contact_us_1.png";
 // @ts-ignore
 import heroImage from '../../assets/images/pngwing.com-6-480x480.webp';
 import {LinearGradient} from "expo-linear-gradient";
@@ -27,7 +30,7 @@ const HomePage = () => {
                 setScrollPosition(0);
             }
             setScrollPosition(currentPosition => currentPosition + 2);
-            console.log(scrollPosition);
+            // console.log(scrollPosition);
             scrollRef.current?.scrollTo({ x: scrollPosition, y: 0, animated: true});
         }, 200);
 
@@ -61,19 +64,22 @@ const HomePage = () => {
                                 onTouchStart={(e)=>setTouchStarted((useState)=>true)}
                                 onTouchEnd={(e)=>setTouchStarted((useState)=>false)}
                                 onTouchMove={(e)=>{
-                                    console.log("Touch moving: ",e.target)
+                                    // console.log("Touch moving: ",e)
                                 }}
                                 onTouchCancel={(e)=>{
+                                    const native = (e.nativeEvent as any);
+                                    const pageX = native.pageX ?? native.touches?.[0]?.pageX;
+                                    const pageY = native.pageY ?? native.touches?.[0]?.pageY;
+                                    console.log('pageX', pageX);
+                                    console.log('pageY', pageY);
                                     setTimeout(()=>{setTouchStarted((useState)=>false);}, 1000);
-
                                 }}
-
                                 >
-                        <Card title="Home" ></Card>
-                        <Card title="About us"></Card>
-                        <Card title="Contact us"></Card>
-                        <Card title="India"></Card>
-                        <Card title="UK"></Card>
+                        <Card title="Home" imagePath={contactUs} ></Card>
+                        <Card title="About us" imagePath={contactUs}></Card>
+                        <Card title="Contact us" imagePath={contactUs}></Card>
+                        <Card title="India" imagePath={contactUs}></Card>
+                        <Card title="UK" imagePath={contactUs}></Card>
                     </ScrollView>
                 </View>
             </SafeAreaView>
