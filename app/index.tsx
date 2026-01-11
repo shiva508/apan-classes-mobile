@@ -1,6 +1,6 @@
 import {StyleSheet} from "react-native";
 
-import HomePage from "@/app/components/HomePage";
+import HomePage from "../app/components/HomePage";
 
 export default function Index() {
     return (
